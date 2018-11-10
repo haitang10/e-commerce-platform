@@ -49,11 +49,23 @@ http://coding.imooc.com/class/109.html
 
 # 2.项目初始化与基于模块化的脚手架搭建
 ## 2.1 项目目录搭建
+1. 全局和本地安装webpack @1.15
+2. 配置webpack.config.js
+3. 
 ## 2.2 脚手架的搭建
+### 2.2.1 对js的处理
+1. js 用什么loader加载
+2. entry有多个js时怎么办？
+3. output里分文件夹存放目标文件
+4. jquery引入方法
+5. 如何提取出公共模块
 
 
+### 2.2.2 对样式的处理
+1. 样式用什么loader加载  css-loader style-loader
+2. webpack如何把css 打包成单独的文件？
 
-
+### 2.2.3 对HTML的处理
 
 
 ----------
