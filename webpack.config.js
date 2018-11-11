@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-07T16:45:52+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-10T22:53:46+08:00
+ * @Last modified time: 2018-11-11T16:05:24+08:00
  */
 var webpack = require('webpack')
 var Ex = require('extract-text-webpack-plugin')
@@ -23,16 +23,16 @@ var getHtmlConfig = function(name) {
     }
 }
 var config = {
-    entry: {
+    entry : {
         'common': ['./src/page/common/index.js'],
-        'index': ['./src/page/index/index.js'],
-        'login': ['./src/page/login/index.js'],
+        'index' : ['./src/page/index/index.js'],
+        'login' : ['./src/page/login/index.js'],
 
     },
     output: {
-        path: './dist',
-        publicPath: '/dist',
-        filename: 'js/[name].js'
+        path        : './dist',
+        publicPath  : '/dist/',
+        filename    : 'js/[name].js'
     },
     externals: {
         'jquery': 'window.jQuery',
@@ -40,10 +40,18 @@ var config = {
     module: {
         loaders: [
           { test: /\.css$/, loader: Ex.extract('style-loader', 'css-loader','less-loader')},
-          { test: /\.(jpg|gif|png|woff|svg|eot|ttf)$/, loader: 'url-loader?limit=10240&name=resource/[name].[ext]'}
+          { test: /\.(jpg|gif|png|woff|svg|eot|ttf)$/, loader: 'url-loader?limit=102&name=resource/[name].[ext]'}
        ]
     },
-    plugins: [
+    resolve : {
+        alias: {
+            util    : __dirname + '/src/util',
+            page    : __dirname + '/src/page',
+            service : __dirname + '/src/service',
+            image   : __dirname + '/src/image',
+        }
+    },
+    plugins : [
         // 独立通用模块打包到js/base.js
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',
@@ -54,7 +62,8 @@ var config = {
         // HTML模板的处理
         new Ht(getHtmlConfig('index')),
         new Ht(getHtmlConfig('login')),
-    ]
+    ],
+
 
 }
 //如果是开发环境，在config 的 entry里增加webpack-dev-server
