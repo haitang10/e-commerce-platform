@@ -87,3 +87,28 @@ http://coding.imooc.com/class/109.html
 - 通用页面头部的开发
 - 通用侧边导航
 - 通过结果提示页，操作成功
+
+----------
+
+
+
+
+
+
+
+
+
+
+
+----------
+11.11 更新
+
+file-loader和url-loader
+详见知乎文章
+
+11.12 更新 
+现在遇到几个问题
+
+- url-loader不起作用，实际还是使用的file-loader
+- 打包路径有问题，file-loader配置里面的name 打包出的图片路径没问题，但是css文件中url有问题，路径\dist\test-img.png  反斜杠？？？？
+- 采用Charles 代理时无法监听到chrome请求？明明chrome已经设置代理服务器为127.0.0.1:8888 ，只能使用360极速浏览器
