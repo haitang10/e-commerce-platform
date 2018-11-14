@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-07T16:45:52+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-12T18:22:37+08:00
+ * @Last modified time: 2018-11-14T15:41:28+08:00
  */
 var webpack = require('webpack')
 var Ex = require('extract-text-webpack-plugin')
@@ -40,14 +40,13 @@ var config = {
     module: {
         loaders: [
           { test: /\.css$/, loader: Ex.extract('style-loader', 'css-loader','less-loader')},
-          { test: /\.(jpg|gif|png|woff|svg|eot|ttf)$/, loader: 'file-loader',
-            query: {
-                name: '[name].[ext]',
-            }}
+          { test: /\.(jpg|gif|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=100&name=resource/[name].[ext]'},
+          { test: /\.string$/, loader: 'html-loader'}
        ]
     },
     resolve : {
         alias: {
+            node_modules: __dirname + '/node_modules',
             util    : __dirname + '/src/util',
             page    : __dirname + '/src/page',
             service : __dirname + '/src/service',
