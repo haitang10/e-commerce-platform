@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-11T14:57:07+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-13T17:55:39+08:00
+ * @Last modified time: 2018-11-20T21:55:13+08:00
  */
 'use strict'
 var Hogan = require('hogan.js')
@@ -58,8 +58,9 @@ var _mm = {
         // (^|&)表示以&开头或者以name开头，([^&]*)表示
         // (&|$) 表示以&结尾或者直接结尾
         // .*? 非贪婪模式
-        console.log('reg', typeof(reg), reg)
+
         var result = window.location.search.substr(1).match(reg)
+        console.log('reg', typeof(reg), reg)
         console.log('result', result)
         return result ? decodeURIComponent(result[2]) : null
 

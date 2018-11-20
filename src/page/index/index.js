@@ -2,11 +2,13 @@
  * @Author: 王贺
  * @Date:   2018-10-22T16:20:16+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-20T11:29:21+08:00
+ * @Last modified time: 2018-11-20T21:48:35+08:00
  */
 'use strict'
 require('./index.css')
 require('page/common/nav/index.js')
+
+require('page/common/header/index.js')
 var _mm = require('util/mm.js')
 
 // // 1.测试ajax跨域

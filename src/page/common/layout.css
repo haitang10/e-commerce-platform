@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-13T21:02:50+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-14T15:28:45+08:00
+ * @Last modified time: 2018-11-20T22:15:55+08:00
  */
 
  /* css reset  */
@@ -33,6 +33,7 @@ input[type='checkbox']{
     width: 1080px;
     margin: 0 auto;
     position: relative;
+    /* 页面其他元素可以使用绝对定位 */
     overflow: hidden;
 }
 /* 全局通用样式 */
