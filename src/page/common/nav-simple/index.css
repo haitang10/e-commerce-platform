@@ -1,0 +1,17 @@
+/**
+ * @Author: 王贺
+ * @Date:   2018-11-20T11:25:19+08:00
+ * @Last modified by:   王贺
+ * @Last modified time: 2018-11-20T11:40:53+08:00
+ */
+.nav-simple{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+.nav-simple .logo{
+    font-size: 26px;
+    font-weight: bold;
+    color: #c60023;
+}

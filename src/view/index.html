@@ -6,7 +6,8 @@
     </head>
 
     <body>
-        <h1>hello, webpack</h1>
+        <%= require('html-loader!./layout/nav.html') %>
+        <!-- <h1>hello, webpack</h1>
         <div class="">
             <a class= 'link'>link test</a>
             <a class= 'link-text'>link-text test</a>
@@ -15,9 +16,10 @@
             <a class= 'btn'>btn test</a>
             <a class= 'btn btn-mini'>btn-mini test</a>
         </div>
-        <div class="loading">
-
-        </div>
+        <div class="loading"></div>
+        <div class="">
+            <i class="fa fa-user"></i>
+        </div> -->
 
        <%= require('html-loader!./layout/footer-common.html') %>
     </body>
