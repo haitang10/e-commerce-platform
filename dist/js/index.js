@@ -3,62 +3,159 @@ webpackJsonp([1],{
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(90);
+	module.exports = __webpack_require__(92);
 
 
 /***/ }),
 
-/***/ 90:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * @Author: 王贺
 	 * @Date:   2018-10-22T16:20:16+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-14T12:00:42+08:00
+	 * @Last modified time: 2018-11-22T23:21:49+08:00
 	 */
 	'use strict'
-	__webpack_require__(91)
-	var _mm = __webpack_require__(93)
+	__webpack_require__(93)
+	__webpack_require__(95)
+	__webpack_require__(98)
+	var navSide = __webpack_require__(105)
 
-	// 1.测试ajax跨域
-	// _mm.request({
-	//     url: '/product/list.do?keyword=1',
-	//     success: function(res){
-	//       console.log(res)
-	//     },
-	//     error: function(err){
-	//         console.log(err)
-	//     }
-	// })
-	// 2.test getUrlParam
-	console.log('test getUrlParam', _mm.getUrlParam('test'))
-	// 3.test htmlTemplate
-	var htmlTemplate = '<div>{{data}}</div>'
-	var data = {data: 123}
-	console.log('test htmlTemplate', _mm.renderHtml(htmlTemplate, data))
+	var _mm = __webpack_require__(101)
+
+	navSide.init({name: 'uesr-center'})
+	// // 1.测试ajax跨域
+	// // _mm.request({
+	// //     url: '/product/list.do?keyword=1',
+	// //     success: function(res){
+	// //       console.log(res)
+	// //     },
+	// //     error: function(err){
+	// //         console.log(err)
+	// //     }
+	// // })
+	// // 2.test getUrlParam
+	// console.log('test getUrlParam', _mm.getUrlParam('test'))
+	// // 3.test htmlTemplate
+	// var htmlTemplate = '<div>{{data}}</div>'
+	// var data = {data: 123}
+	// console.log('test htmlTemplate', _mm.renderHtml(htmlTemplate, data))
+
+	// 11.20 更新
 
 
 /***/ }),
 
-/***/ 91:
+/***/ 93:
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 93:
+/***/ 95:
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * @Author: 王贺
+	 * @Date:   2018-11-20T21:08:46+08:00
+	 * @Last modified by:   王贺
+	 * @Last modified time: 2018-11-20T21:10:10+08:00
+	 */
+	'use strict'
+	__webpack_require__(96)
+
+
+/***/ }),
+
+/***/ 96:
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 98:
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * @Author: 王贺
+	 * @Date:   2018-11-20T21:44:11+08:00
+	 * @Last modified by:   王贺
+	 * @Last modified time: 2018-11-22T23:07:57+08:00
+	 */
+	'use strict'
+	__webpack_require__(99)
+	var _mm     = __webpack_require__(101)
+
+	// 通用页面头部,三个功能，回填输入框，绑定点击事件，提交请求
+	var header = {
+	    init : function(){
+	        this.onLoad()
+	        this.bindEvent()
+	    },
+	    onLoad : function(){
+	        var keyword = _mm.getUrlParam('keyword')
+	        // keyword存在，则回填输入框
+	        if(keyword){
+	            $('#search-input').val(keyword)
+	        }
+	    },
+	    bindEvent : function(){
+	        // 事件响应里面的this 是元素,所以要在click事件响应前把this对象赋值出去
+	        var _this = this
+	        // 点击搜索按钮以后，做搜索提交
+	        $('#search-btn').click(function(){
+	            // console.log('event',event.target)
+	            // console.log('this',this)
+	            _this.searchSubmit()
+	        });
+	        // 输入车后，做搜索提交
+	        $('#search-input').keyup(function(event){
+	            // 13是回车键的keyCode
+	            if(event.keyCode === 13){
+	                _this.searchSubmit()
+	            }
+	        })
+	    },
+	    // 搜索的提交
+	    searchSubmit : function(){
+	        var keyword = $.trim($('#search-input').val())
+	        // 如果提交的时候有keyword,正常跳转到list页
+	        if(keyword){
+	            window.location.href = './list.html?keyword=' + keyword
+	        }
+	        // 如果keyword为空，直接返回首页
+	        else{
+	            _mm.goHome()
+	        }
+	    }
+	}
+	header.init()
+
+
+/***/ }),
+
+/***/ 99:
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * @Author: 王贺
 	 * @Date:   2018-11-11T14:57:07+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-13T17:55:39+08:00
+	 * @Last modified time: 2018-11-22T22:58:00+08:00
 	 */
 	'use strict'
-	var Hogan = __webpack_require__(94)
+	var Hogan = __webpack_require__(102)
 	var conf = {
 	    serverHost: ''
 	}
@@ -92,6 +189,7 @@ webpackJsonp([1],{
 	            }
 	        })
 	    },
+
 	    // 2.统一处理登录    回到首页
 	    doLogin : function() {
 	        //强制转向登录页面，登录完之后重定向回原页面
@@ -101,6 +199,7 @@ webpackJsonp([1],{
 	    goHome  : function() {
 	        window.loaction.href = './index.html'
 	    },
+
 	    // 3.获取服务器地址,现在是www.happymmall以后可能改成api.mmall，所以用conf.serverHost + path
 	    getServerUrl: function(path) {
 	        return conf.serverHost + path
@@ -111,18 +210,19 @@ webpackJsonp([1],{
 	        // (^|&)表示以&开头或者以name开头，([^&]*)表示
 	        // (&|$) 表示以&结尾或者直接结尾
 	        // .*? 非贪婪模式
-	        console.log('reg', typeof(reg), reg)
+
 	        var result = window.location.search.substr(1).match(reg)
+	        console.log('reg', typeof(reg), reg)
 	        console.log('result', result)
 	        return result ? decodeURIComponent(result[2]) : null
 
 	    },
+
 	    // 5.渲染HTML模板,使用hogan,先编译，再渲染
 	    renderHtml: function(htmlTemplate, data) {
-
 	        return Hogan.compile(htmlTemplate).render(data)
 	    },
-	    // 5.渲染HTML模板,使用hogan,先编译，再渲染
+
 	    // 6.成功提示
 	    successTips: function(msg) {
 	        alert(msg || '恭喜您操作成功！！！')
@@ -131,6 +231,7 @@ webpackJsonp([1],{
 	    errorTips: function(msg) {
 	        alert(msg || '好像出了点小问题~~~')
 	    },
+	    
 	    // 8.字段表单验证，支持非空，手机邮箱的判断
 	    validate: function(type, value) {
 	        var value = $.trim(value) // 用trim函数去掉输入内容前后的空格以及把value转成字符串
@@ -155,7 +256,7 @@ webpackJsonp([1],{
 
 /***/ }),
 
-/***/ 94:
+/***/ 102:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -175,15 +276,15 @@ webpackJsonp([1],{
 
 	// This file is for use with Node.js. See dist/ for browser files.
 
-	var Hogan = __webpack_require__(95);
-	Hogan.Template = __webpack_require__(96).Template;
+	var Hogan = __webpack_require__(103);
+	Hogan.Template = __webpack_require__(104).Template;
 	Hogan.template = Hogan.Template;
 	module.exports = Hogan;
 
 
 /***/ }),
 
-/***/ 95:
+/***/ 103:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -613,7 +714,7 @@ webpackJsonp([1],{
 
 /***/ }),
 
-/***/ 96:
+/***/ 104:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -958,6 +1059,72 @@ webpackJsonp([1],{
 
 	})( true ? exports : Hogan);
 
+
+/***/ }),
+
+/***/ 105:
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * @Author: 王贺
+	 * @Date:   2018-11-22T22:20:56+08:00
+	 * @Last modified by:   王贺
+	 * @Last modified time: 2018-11-22T23:00:37+08:00
+	 */
+	'use strict'
+	__webpack_require__(106)
+	var _mm = __webpack_require__(101)
+	var templateIndex   = __webpack_require__(108);
+
+	// 侧边导航
+	var navSide = {
+	    option: {
+	        name: '',
+	        navList: [
+	            {name: 'user-center', desc:'个人中心', href:'./user-center.html'},
+	            {name : 'order-list', desc : '我的订单', href: './order-list.html'},
+	            {name : 'user-pass-update', desc : '修改密码', href: './user-pass-update.html'},
+	            {name : 'about', desc : '关于MMall', href: './about.html'}
+	        ]
+	    },
+	    init: function(option) {
+	        // 合并选项
+	        $.extend(this.option, option)
+	        this.renderNav()
+	    },
+	    // 渲染导航菜单
+	    renderNav: function() {
+	        // 计算active数据
+	        var iLength = this.option.navList.length
+	        for(var i = 0; i < iLength; i++){
+	            if(this.option.navList[i].name === this.option.name){
+	                this.option.navList[i].isActive = true
+	            }
+	        }
+
+	        // 渲染list数据
+	        var navHtml = _mm.renderHtml(templateIndex, {navList : this.option.navList})
+
+	        // 把HTML放入容器
+	        $('.nav-side').html(navHtml)
+	    }
+	}
+	module.exports = navSide
+
+
+/***/ }),
+
+/***/ 106:
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 108:
+/***/ (function(module, exports) {
+
+	module.exports = "{{#navList}}\r\n{{#isActive}}\r\n<li class=\"nav-item active\">\r\n{{/isActive}}\r\n{{^isActive}}\r\n<li class=\"nav-item\">\r\n{{/isActive}}\r\n    <a class=\"link\" href=\"{{href}}\">{{desc}}</a>\r\n</li>\r\n{{/navList}} \r\n";
 
 /***/ })
 

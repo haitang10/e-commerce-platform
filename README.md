@@ -1,13 +1,13 @@
 # e-commerce-platform
-一个电商平台 
-来源自慕课网视频 
+一个电商平台
+来源自慕课网视频
 http://coding.imooc.com/class/109.html
 
 # 1.需求分析
 
 ## 1.1 电商平台有什么？
 ### 购买
-- 展示 
+- 展示
 - 购物车
 - 下单
 - 支付
@@ -21,7 +21,7 @@ http://coding.imooc.com/class/109.html
 - 地址
 ## 1.2 提炼核心需求
 
-### 用户端 
+### 用户端
 - 展示   首页，商品列表，商品详情
 - 购物车 购物车数量，添加删除商品，购物车提交
 - 下单   订单确认（地址管理），订单提交，
@@ -51,7 +51,7 @@ http://coding.imooc.com/class/109.html
 ## 2.1 项目目录搭建
 1. 全局和本地安装webpack @1.15
 2. 配置webpack.config.js
-3. 
+3.
 ## 2.2 脚手架的搭建
 ### 2.2.1 对js的处理
 1. js 用什么loader加载
@@ -76,15 +76,16 @@ http://coding.imooc.com/class/109.html
 - 网络请求工具
 - URL路径工具
 - 模板渲染工具 -- hogan
-- 字段验证&&通用提示 
+- 字段验证&&通用提示
 - 统一跳转
 
-## 3.2 页面布局 
+## 3.2 页面布局
 - 定宽布局
 - 通用部分抽离
 - icon-font 的引入
 - 通用样式的定义
 - 通用页面头部的开发
+- 两种导航栏的开发
 - 通用侧边导航
 - 通过结果提示页，操作成功
 
@@ -106,7 +107,7 @@ http://coding.imooc.com/class/109.html
 file-loader和url-loader
 详见知乎文章
 
-11.12 更新 
+11.12 更新
 现在遇到几个问题
 
 - url-loader不起作用，实际还是使用的file-loader

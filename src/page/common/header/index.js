@@ -2,14 +2,14 @@
  * @Author: 王贺
  * @Date:   2018-11-20T21:44:11+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-20T23:00:19+08:00
+ * @Last modified time: 2018-11-22T23:07:57+08:00
  */
 'use strict'
 require('./index.css')
-var _mm     = require('util/mm.js');
-// 通用页面头部
-var header = {
+var _mm     = require('util/mm.js')
 
+// 通用页面头部,三个功能，回填输入框，绑定点击事件，提交请求
+var header = {
     init : function(){
         this.onLoad()
         this.bindEvent()

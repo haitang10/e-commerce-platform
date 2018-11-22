@@ -2,15 +2,17 @@
  * @Author: 王贺
  * @Date:   2018-10-22T16:20:16+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-20T21:48:35+08:00
+ * @Last modified time: 2018-11-22T23:27:16+08:00
  */
 'use strict'
 require('./index.css')
 require('page/common/nav/index.js')
-
 require('page/common/header/index.js')
-var _mm = require('util/mm.js')
+var navSide = require('page/common/nav-side/index.js')
 
+// var _mm = require('util/mm.js')
+
+navSide.init({name: 'order-list'})
 // // 1.测试ajax跨域
 // // _mm.request({
 // //     url: '/product/list.do?keyword=1',

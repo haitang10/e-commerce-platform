@@ -1,0 +1,27 @@
+/**
+ * @Author: 王贺
+ * @Date:   2018-11-22T22:21:03+08:00
+ * @Last modified by:   王贺
+ * @Last modified time: 2018-11-22T22:33:23+08:00
+ */
+ /* 导航主体 */
+ .nav-side{
+     float: left;
+     width: 130px;
+     min-height: 100px;
+ }
+ .nav-side .nav-item{
+     line-height: 25px;
+     font-size: 13px;
+ }
+ .nav-side .nav-item .link{
+     color: #888;
+ }
+ .nav-side .nav-item.active .link{
+     color: #c60023;
+ }
+ /* 右侧内容区 */
+ .content.with-nav{
+     float: left;
+     width: 950px;
+ }

@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-11T14:57:07+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-20T21:55:13+08:00
+ * @Last modified time: 2018-11-22T22:58:00+08:00
  */
 'use strict'
 var Hogan = require('hogan.js')
@@ -39,6 +39,7 @@ var _mm = {
             }
         })
     },
+
     // 2.统一处理登录    回到首页
     doLogin : function() {
         //强制转向登录页面，登录完之后重定向回原页面
@@ -48,6 +49,7 @@ var _mm = {
     goHome  : function() {
         window.loaction.href = './index.html'
     },
+
     // 3.获取服务器地址,现在是www.happymmall以后可能改成api.mmall，所以用conf.serverHost + path
     getServerUrl: function(path) {
         return conf.serverHost + path
@@ -65,12 +67,12 @@ var _mm = {
         return result ? decodeURIComponent(result[2]) : null
 
     },
+
     // 5.渲染HTML模板,使用hogan,先编译，再渲染
     renderHtml: function(htmlTemplate, data) {
-
         return Hogan.compile(htmlTemplate).render(data)
     },
-    // 5.渲染HTML模板,使用hogan,先编译，再渲染
+
     // 6.成功提示
     successTips: function(msg) {
         alert(msg || '恭喜您操作成功！！！')
@@ -79,6 +81,7 @@ var _mm = {
     errorTips: function(msg) {
         alert(msg || '好像出了点小问题~~~')
     },
+    
     // 8.字段表单验证，支持非空，手机邮箱的判断
     validate: function(type, value) {
         var value = $.trim(value) // 用trim函数去掉输入内容前后的空格以及把value转成字符串
