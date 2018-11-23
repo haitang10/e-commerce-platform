@@ -15,7 +15,7 @@ webpackJsonp([1],{
 	 * @Author: 王贺
 	 * @Date:   2018-10-22T16:20:16+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-22T23:21:49+08:00
+	 * @Last modified time: 2018-11-22T23:27:16+08:00
 	 */
 	'use strict'
 	__webpack_require__(93)
@@ -23,9 +23,9 @@ webpackJsonp([1],{
 	__webpack_require__(98)
 	var navSide = __webpack_require__(105)
 
-	var _mm = __webpack_require__(101)
+	// var _mm = require('util/mm.js')
 
-	navSide.init({name: 'uesr-center'})
+	navSide.init({name: 'order-list'})
 	// // 1.测试ajax跨域
 	// // _mm.request({
 	// //     url: '/product/list.do?keyword=1',
