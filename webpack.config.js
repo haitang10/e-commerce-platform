@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-07T16:45:52+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-23T20:35:03+08:00
+ * @Last modified time: 2018-11-25T13:54:00+08:00
  */
 var webpack = require('webpack')
 var Ex = require('extract-text-webpack-plugin')
@@ -27,7 +27,7 @@ var config = {
     entry : {
         'common' : ['./src/page/common/index.js'],
         'index'  : ['./src/page/index/index.js'],
-        'login'  : ['./src/page/login/index.js'],
+        'user-login'  : ['./src/page/user-login/index.js'],
         'result' : ['./src/page/result/index.js']
     },
     output: {
@@ -65,7 +65,7 @@ var config = {
 
         // HTML模板的处理
         new Ht(getHtmlConfig('index', '首页')),
-        new Ht(getHtmlConfig('login', '用户登录')),
+        new Ht(getHtmlConfig('user-login', '用户登录')),
         new Ht(getHtmlConfig('result', '操作结果'))
 
     ],

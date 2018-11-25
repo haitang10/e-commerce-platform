@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-11T14:57:07+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-22T22:58:00+08:00
+ * @Last modified time: 2018-11-25T16:55:30+08:00
  */
 'use strict'
 var Hogan = require('hogan.js')
@@ -43,7 +43,7 @@ var _mm = {
     // 2.统一处理登录    回到首页
     doLogin : function() {
         //强制转向登录页面，登录完之后重定向回原页面
-        window.location.href = './login.html?redirect=' + encodeURIComponent(window.location.href)
+        window.location.href = './user-login.html?redirect=' + encodeURIComponent(window.location.href)
 
     },
     goHome  : function() {
@@ -81,13 +81,14 @@ var _mm = {
     errorTips: function(msg) {
         alert(msg || '好像出了点小问题~~~')
     },
-    
+
     // 8.字段表单验证，支持非空，手机邮箱的判断
     validate: function(type, value) {
         var value = $.trim(value) // 用trim函数去掉输入内容前后的空格以及把value转成字符串
         //非空验证
         if(type === 'require'){
             return !!value //如果value为空字符串，那么!value true， !!value false
+            console.log('value', !!value)
         }
         //电话验证
         if(type === 'phone'){
