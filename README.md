@@ -116,7 +116,8 @@ http://coding.imooc.com/class/109.html
 
 ## 4.5 修改密码
 
-# 查看接口文档
+# 5. 查看接口文档-user-service.js
+## 5.1 nav.js 检查登录状态，购物车等信息。
 ----------
 
 

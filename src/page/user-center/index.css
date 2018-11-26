@@ -1,0 +1,16 @@
+/**
+ * @Author: 王贺
+ * @Date:   2018-11-26T19:37:21+08:00
+ * @Last modified by:   王贺
+ * @Last modified time: 2018-11-26T19:37:46+08:00
+ */
+ .form-line{
+     height: 30px;
+     line-height: 30px;
+     font-size: 14px;
+ }
+ .form-line .label{
+     display: inline-block;
+     width: 60px;
+     text-align: center;
+ }

@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-25T16:04:33+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-26T15:42:54+08:00
+ * @Last modified time: 2018-11-26T19:59:04+08:00
  */
  'use strict';
 
@@ -17,7 +17,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 2.检查用户名
      checkUsername : function(username, resolve, reject){
@@ -30,7 +30,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 3.用户注册
      register : function(userInfo, resolve, reject){
@@ -40,7 +40,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 4.检查登录状态
      checkLogin : function(resolve, reject){
@@ -49,7 +49,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 5.获取用户密码提示问题
      getQuestion : function(username, resolve, reject){
@@ -61,7 +61,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 6.检查密码提示问题答案
      checkAnswer : function(userInfo, resolve, reject){
@@ -71,7 +71,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 7.重置密码
      resetPassword : function(userInfo, resolve, reject){
@@ -81,7 +81,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 8.获取用户信息
      getUserInfo : function(resolve, reject){
@@ -90,7 +90,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 9.更新个人信息
      updateUserInfo : function(userInfo, resolve, reject){
@@ -100,7 +100,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 10.登录状态下更新密码
      updatePassword : function(userInfo, resolve, reject){
@@ -110,7 +110,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      },
      // 11.登出
      logout : function(resolve, reject){
@@ -119,7 +119,7 @@
              method  : 'POST',
              success : resolve,
              error   : reject
-         });
+         })
      }
  }
- module.exports = _user;
+ module.exports = _user

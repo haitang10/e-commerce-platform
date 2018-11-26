@@ -2,26 +2,27 @@
  * @Author: 王贺
  * @Date:   2018-11-26T16:07:23+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-26T16:10:11+08:00
+ * @Last modified time: 2018-11-26T19:09:44+08:00
  */
- 'use strict';
- require('./index.css');
- require('page/common/nav-simple/index.js');
- var _user   = require('service/user-service.js');
- var _mm     = require('util/mm.js');
+ 'use strict'
+ require('./index.css')
+ require('page/common/nav-simple/index.js')
+ var _user = require('service/user-service.js')
+ var _mm   = require('util/mm.js')
 
- // 表单里的错误提示
+ // 1.表单里的错误提示
  var formError = {
      show : function(errMsg){
-         $('.error-item').show().find('.err-msg').text(errMsg);
+         $('.error-item').show().find('.err-msg').text(errMsg)
      },
      hide : function(){
-         $('.error-item').hide().find('.err-msg').text('');
+         $('.error-item').hide().find('.err-msg').text('')
      }
  };
 
- // page 逻辑部分
+ // 2.page 逻辑部分
  var page = {
+     // 用data存储用户名，问题等信息
      data : {
          username    : '',
          question    : '',
@@ -29,35 +30,33 @@
          token       : ''
      },
      init: function(){
-         this.onLoad();
-         this.bindEvent();
-     },
-     onLoad : function(){
-         this.loadStepUsername();
+         this.loadStepUsername()
+         this.bindEvent()
      },
      bindEvent : function(){
-         var _this = this;
-         // 输入用户名后下一步按钮的点击
+         var _this = this
+         // 1.输入用户名后下一步按钮的点击
          $('#submit-username').click(function(){
-             var username = $.trim($('#username').val());
+             var username = $.trim($('#username').val())
              // 用户名存在
              if(username){
                  _user.getQuestion(username, function(res){
-                     _this.data.username = username;
-                     _this.data.question = res;
-                     _this.loadStepQuestion();
+                     console.log(res)
+                     _this.data.username = username
+                     _this.data.question = res
+                     _this.loadStepQuestion()
                  }, function(errMsg){
-                     formError.show(errMsg);
-                 });
+                     formError.show(errMsg)
+                 })
              }
              // 用户名不存在
              else{
-                 formError.show('请输入用户名');
+                 formError.show('请输入用户名')
              }
-         });
-         // 输入密码提示问题答案中的按钮点击
+         })
+         // 2.输入密码提示问题答案中的按钮点击
          $('#submit-question').click(function(){
-             var answer = $.trim($('#answer').val());
+             var answer = $.trim($('#answer').val())
              // 密码提示问题答案存在
              if(answer){
                  // 检查密码提示问题答案
@@ -66,21 +65,23 @@
                      question : _this.data.question,
                      answer   : answer
                  }, function(res){
-                     _this.data.answer   = answer;
-                     _this.data.token    = res;
-                     _this.loadStepPassword();
+                     console.log(res)
+                     _this.data.answer   = answer
+                     _this.data.token    = res
+                     _this.loadStepPassword()
+                     console.log('data', _this.data)
                  }, function(errMsg){
-                     formError.show(errMsg);
-                 });
+                     formError.show(errMsg)
+                 })
              }
              // 用户名不存在
              else{
-                 formError.show('请输入密码提示问题答案');
+                 formError.show('请输入密码提示问题答案')
              }
          });
-         // 输入新密码后的按钮点击
+         // 3.输入新密码后的按钮点击
          $('#submit-password').click(function(){
-             var password = $.trim($('#password').val());
+             var password = $.trim($('#password').val())
              // 密码不为空
              if(password && password.length >= 6){
                  // 检查密码提示问题答案
@@ -89,41 +90,39 @@
                      passwordNew     : password,
                      forgetToken     : _this.data.token
                  }, function(res){
-                     window.location.href = './result.html?type=pass-reset';
+                     window.location.href = './result.html?type=pass-reset'
                  }, function(errMsg){
-                     formError.show(errMsg);
-                 });
+                     formError.show(errMsg)
+                 })
              }
              // 密码为空
              else{
-                 formError.show('请输入不少于6位的新密码');
+                 formError.show('请输入不少于6位的新密码')
              }
-         });
+         })
 
      },
-     // 加载输入用户名的一步
+
+     // 1.加载输入用户名的一步
      loadStepUsername : function(){
-         $('.step-username').show();
+         $('.step-username').show()
      },
-     // 加载输入密码提示问题答案的一步
+     // 2.加载输入密码提示问题答案的一步
      loadStepQuestion : function(){
          // 清除错误提示
-         formError.hide();
+         formError.hide()
          // 做容器的切换
-         $('.step-username').hide()
-             .siblings('.step-question').show()
-             .find('.question').text(this.data.question);
+         $('.step-username').hide().siblings('.step-question').show().find('.question').text(this.data.question)
      },
-     // 加载输入password的一步
+     // 3.加载输入password的一步
      loadStepPassword : function(){
          // 清除错误提示
-         formError.hide();
+         formError.hide()
          // 做容器的切换
-         $('.step-question').hide()
-             .siblings('.step-password').show();
+         $('.step-question').hide().siblings('.step-password').show()
      }
 
- };
+ }
  $(function(){
-     page.init();
- });
+     page.init()
+ })

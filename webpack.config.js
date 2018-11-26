@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-07T16:45:52+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-26T16:14:27+08:00
+ * @Last modified time: 2018-11-26T20:33:22+08:00
  */
 var webpack = require('webpack')
 var Ex = require('extract-text-webpack-plugin')
@@ -25,13 +25,15 @@ var getHtmlConfig = function(name, title) {
 }
 var config = {
     entry : {
-        'common'        : ['./src/page/common/index.js'],
-        'index'         : ['./src/page/index/index.js'],
-        'result'        : ['./src/page/result/index.js'],
-        'user-login'    : ['./src/page/user-login/index.js'],
-        'user-register' : ['./src/page/user-register/index.js'],
-        'user-pass-reset' : ['./src/page/user-pass-reset/index.js']
-
+        'common'            : ['./src/page/common/index.js'],
+        'index'             : ['./src/page/index/index.js'],
+        'result'            : ['./src/page/result/index.js'],
+        'user-login'        : ['./src/page/user-login/index.js'],
+        'user-register'     : ['./src/page/user-register/index.js'],
+        'user-pass-reset'   : ['./src/page/user-pass-reset/index.js'],
+        'user-center'       : ['./src/page/user-center/index.js'],
+        'user-center-update': ['./src/page/user-center-update/index.js'],
+        'user-pass-update'  : ['./src/page/user-pass-update/index.js'],
     },
     output: {
         path        : './dist',
@@ -72,8 +74,10 @@ var config = {
         new Ht(getHtmlConfig('user-login', '用户登录')),
         new Ht(getHtmlConfig('user-register', '用户注册')),
         new Ht(getHtmlConfig('user-pass-reset', '找回密码')),
+        new Ht(getHtmlConfig('user-center', '用户中心')),
+        new Ht(getHtmlConfig('user-center-update', '个人信息修改')),
 
-
+        new Ht(getHtmlConfig('user-pass-update', '修改密码')),
     ],
 
 

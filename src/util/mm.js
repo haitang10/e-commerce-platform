@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-11T14:57:07+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-25T23:13:12+08:00
+ * @Last modified time: 2018-11-26T19:13:45+08:00
  */
 'use strict'
 var Hogan = require('hogan.js')
@@ -19,6 +19,7 @@ var _mm = {
             dataType: param.type    || 'json',
             data    : param.data    || '',
             success : function(res) {
+                console.log('res', res)
                 // 请求成功
                 if(res.status === 0){
                     typeof param.success === 'function' && param.success(res.data, res.msg)
