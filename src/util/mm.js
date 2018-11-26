@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-11T14:57:07+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-25T16:55:30+08:00
+ * @Last modified time: 2018-11-25T23:13:12+08:00
  */
 'use strict'
 var Hogan = require('hogan.js')
@@ -22,7 +22,6 @@ var _mm = {
                 // 请求成功
                 if(res.status === 0){
                     typeof param.success === 'function' && param.success(res.data, res.msg)
-
                 }
                 // 没有登录状态，需要强制登录
                 else if(res.status === 10){
