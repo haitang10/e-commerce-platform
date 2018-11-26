@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-25T20:17:42+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-26T14:59:38+08:00
+ * @Last modified time: 2018-11-26T15:19:54+08:00
  */
  // 注册页面逻辑
  'use strict'
@@ -29,7 +29,7 @@
      // 1.绑定事件,点击注册或者回车提交表单
      bindEvent: function() {
          var _this = this
-         // 1.验证username是否存在？
+         // 1.验证username是否存在？，异步提交
          $('#username').blur(function(){
                 var username = $.trim($(this).val())
                 // 如果用户名为空，我们不做验证
@@ -99,7 +99,7 @@
      },
      // 2.提交表单
      submit: function(){
-         console.log('this',this)
+         // console.log('this',this)
          // 获取输入框内容
          var formData = {
              username        : $.trim($('#username').val()),
