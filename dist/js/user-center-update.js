@@ -1,57 +1,10 @@
-webpackJsonp([1],{
+webpackJsonp([4],{
 
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(92);
+	module.exports = __webpack_require__(120);
 
-
-/***/ }),
-
-/***/ 92:
-/***/ (function(module, exports, __webpack_require__) {
-
-	/**
-	 * @Author: 王贺
-	 * @Date:   2018-10-22T16:20:16+08:00
-	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-22T23:27:16+08:00
-	 */
-	'use strict'
-	__webpack_require__(93)
-	__webpack_require__(95)
-	__webpack_require__(103)
-	var navSide = __webpack_require__(106)
-
-	// var _mm = require('util/mm.js')
-
-	navSide.init({name: 'order-list'})
-	// // 1.测试ajax跨域
-	// // _mm.request({
-	// //     url: '/product/list.do?keyword=1',
-	// //     success: function(res){
-	// //       console.log(res)
-	// //     },
-	// //     error: function(err){
-	// //         console.log(err)
-	// //     }
-	// // })
-	// // 2.test getUrlParam
-	// console.log('test getUrlParam', _mm.getUrlParam('test'))
-	// // 3.test htmlTemplate
-	// var htmlTemplate = '<div>{{data}}</div>'
-	// var data = {data: 123}
-	// console.log('test htmlTemplate', _mm.renderHtml(htmlTemplate, data))
-
-	// 11.20 更新
-
-
-/***/ }),
-
-/***/ 93:
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -391,6 +344,121 @@ webpackJsonp([1],{
 /***/ (function(module, exports) {
 
 	module.exports = "{{#navList}}\r\n{{#isActive}}\r\n<li class=\"nav-item active\">\r\n{{/isActive}}\r\n{{^isActive}}\r\n<li class=\"nav-item\">\r\n{{/isActive}}\r\n    <a class=\"link\" href=\"{{href}}\">{{desc}}</a>\r\n</li>\r\n{{/navList}} \r\n";
+
+/***/ }),
+
+/***/ 120:
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*
+	* @Author: Rosen
+	* @Date:   2017-05-23 19:52:16
+	 * @Last modified by:   王贺
+	 * @Last modified time: 2018-11-27T12:27:39+08:00
+	*/
+	'use strict'
+	__webpack_require__(121)
+	__webpack_require__(95)
+	__webpack_require__(103)
+	var navSide         = __webpack_require__(106)
+	var _mm             = __webpack_require__(98)
+	var _user           = __webpack_require__(102)
+	var templateIndex   = __webpack_require__(123)
+
+	// page 逻辑部分
+	var page = {
+	    init: function(){
+	        this.loadUserInfo()
+	        this.bindEvent()
+	    },
+	    // 1.加载用户信息
+	    loadUserInfo : function(){
+	        // 初始化左侧菜单
+	        navSide.init({name: 'user-center'})
+	        var userHtml = ''
+	        _user.getUserInfo(function(res){
+	            userHtml = _mm.renderHtml(templateIndex, res)
+	            $('.panel-body').html(userHtml)
+	        }, function(errMsg){
+	            _mm.errorTips(errMsg)
+	        })
+	    },
+	    // 2.绑定事件
+	    bindEvent : function(){
+	        var _this = this
+	        // 点击提交按钮后的动作
+	        $(document).on('click', '.btn-submit', function(){
+	            var userInfo = {
+	                phone       : $.trim($('#phone').val()),
+	                email       : $.trim($('#email').val()),
+	                question    : $.trim($('#question').val()),
+	                answer      : $.trim($('#answer').val())
+	            }
+	            var validateResult = _this.validateForm(userInfo)
+	            if(validateResult.status){
+	                // 更改用户信息
+	                _user.updateUserInfo(userInfo, function(res, msg){
+	                    _mm.successTips(msg)
+	                    window.location.href = './user-center.html'
+	                }, function(errMsg){
+	                    _mm.errorTips(errMsg)
+	                })
+	            }
+	            else{
+	                _mm.errorTips(validateResult.msg);
+	            }
+	        });
+	    },
+	    // 3.验证字段信息
+	    validateForm : function(formData){
+	        var result = {
+	            status  : false,
+	            msg     : ''
+	        }
+	        // 验证手机号
+	        if(!_mm.validate('phone', formData.phone)){
+	            result.msg = '手机号格式不正确'
+	            return result
+	        }
+	        // 验证邮箱格式
+	        if(!_mm.validate('email', formData.email)){
+	            result.msg = '邮箱格式不正确'
+	            return result
+	        }
+	        // 验证密码提示问题是否为空
+	        if(!_mm.validate('require', formData.question)){
+	            result.msg = '密码提示问题不能为空'
+	            return result
+	        }
+	        // 验证密码提示问题答案是否为空
+	        if(!_mm.validate('require', formData.answer)){
+	            result.msg = '密码提示问题答案不能为空'
+	            return result
+	        }
+	        // 通过验证，返回正确提示
+	        result.status   = true
+	        result.msg      = '验证通过'
+	        return result
+	    }
+	}
+	$(function(){
+	    page.init()
+	})
+
+
+/***/ }),
+
+/***/ 121:
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 123:
+/***/ (function(module, exports) {
+
+	module.exports = "<div class=\"user-info\">\n    <div class=\"form-line\">\n        <span class=\"label\">用户名：</span>\n        <span class=\"text\">{{username}}</span>\n    </div>\n    <div class=\"form-line\">\n        <span class=\"label\">电 话：</span>\n        <input class=\"input\" id=\"phone\" autocomplete=\"off\" value=\"{{phone}}\" />\n    </div>\n    <div class=\"form-line\">\n        <span class=\"label\">邮 箱：</span>\n        <input class=\"input\" id=\"email\" autocomplete=\"off\" value=\"{{email}}\" />\n    </div>\n    <div class=\"form-line\">\n        <span class=\"label\">问 题：</span>\n        <input class=\"input\" id=\"question\" autocomplete=\"off\" value=\"{{question}}\" />\n    </div>\n    <div class=\"form-line\">\n        <span class=\"label\">答 案：</span>\n        <input class=\"input\" id=\"answer\" autocomplete=\"off\" value=\"{{answer}}\" />\n    </div>\n    <span class=\"btn btn-submit\">提交</span>\n</div>";
 
 /***/ })
 

@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-26T19:33:13+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-26T19:34:27+08:00
+ * @Last modified time: 2018-11-27T15:47:58+08:00
  */
  'use strict'
  require('./index.css')
@@ -15,14 +15,9 @@
  // page 逻辑部分
  var page = {
      init: function(){
-         this.onLoad()
-         this.bindEvent()
-     },
-     onLoad : function(){
          // 初始化左侧菜单
-         navSide.init({
-             name: 'user-pass-update'
-         });
+         navSide.init({ name: 'user-pass-update'})
+         this.bindEvent()
      },
      bindEvent : function(){
          var _this = this
@@ -57,7 +52,7 @@
              msg     : ''
          }
          // 验证原密码是否为空
-         if(!_mm.validate(formData.password, 'require')){
+         if(!_mm.validate('require', formData.password)){
              result.msg = '原密码不能为空';
              return result
          }

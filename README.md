@@ -88,7 +88,7 @@ http://coding.imooc.com/class/109.html
 ## 3.3 通用组件开发
 - 通用页面头部的开发header-common header
 - 两种导航栏的开发nav nav-simple
-- 通用侧边导航 nav-side
+- 通用侧边导航 nav-side ,根据name 初始化左侧导航栏
 
 ## 3.4 通用结果提示页
 - 操作成功,注册成功，result.html
@@ -112,7 +112,7 @@ http://coding.imooc.com/class/109.html
 
 ## 4.4 个人中心
 - 获取用户信息
-- 修改
+- 修改个人信息
 
 ## 4.5 修改密码
 

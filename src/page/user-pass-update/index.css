@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-26T19:33:06+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-26T19:33:24+08:00
+ * @Last modified time: 2018-11-27T13:22:43+08:00
  */
  .form-line{
      margin-bottom: 10px;
@@ -21,3 +21,5 @@
      width: 200px;
      font-size: 14px;
  }
+.panel-title{
+     padding:10px;font-size:14px;border-bottom:1px solid #eee;color:#666;font-weight:700}

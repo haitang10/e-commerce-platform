@@ -1,57 +1,10 @@
-webpackJsonp([1],{
+webpackJsonp([7],{
 
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(92);
+	module.exports = __webpack_require__(130);
 
-
-/***/ }),
-
-/***/ 92:
-/***/ (function(module, exports, __webpack_require__) {
-
-	/**
-	 * @Author: 王贺
-	 * @Date:   2018-10-22T16:20:16+08:00
-	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-22T23:27:16+08:00
-	 */
-	'use strict'
-	__webpack_require__(93)
-	__webpack_require__(95)
-	__webpack_require__(103)
-	var navSide = __webpack_require__(106)
-
-	// var _mm = require('util/mm.js')
-
-	navSide.init({name: 'order-list'})
-	// // 1.测试ajax跨域
-	// // _mm.request({
-	// //     url: '/product/list.do?keyword=1',
-	// //     success: function(res){
-	// //       console.log(res)
-	// //     },
-	// //     error: function(err){
-	// //         console.log(err)
-	// //     }
-	// // })
-	// // 2.test getUrlParam
-	// console.log('test getUrlParam', _mm.getUrlParam('test'))
-	// // 3.test htmlTemplate
-	// var htmlTemplate = '<div>{{data}}</div>'
-	// var data = {data: 123}
-	// console.log('test htmlTemplate', _mm.renderHtml(htmlTemplate, data))
-
-	// 11.20 更新
-
-
-/***/ }),
-
-/***/ 93:
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -391,6 +344,102 @@ webpackJsonp([1],{
 /***/ (function(module, exports) {
 
 	module.exports = "{{#navList}}\r\n{{#isActive}}\r\n<li class=\"nav-item active\">\r\n{{/isActive}}\r\n{{^isActive}}\r\n<li class=\"nav-item\">\r\n{{/isActive}}\r\n    <a class=\"link\" href=\"{{href}}\">{{desc}}</a>\r\n</li>\r\n{{/navList}} \r\n";
+
+/***/ }),
+
+/***/ 130:
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * @Author: 王贺
+	 * @Date:   2018-11-26T19:33:13+08:00
+	 * @Last modified by:   王贺
+	 * @Last modified time: 2018-11-26T19:34:27+08:00
+	 */
+	 'use strict'
+	 __webpack_require__(131)
+	 __webpack_require__(95)
+	 __webpack_require__(103);
+	 var navSide         = __webpack_require__(106)
+	 var _mm             = __webpack_require__(98)
+	 var _user           = __webpack_require__(102)
+
+	 // page 逻辑部分
+	 var page = {
+	     init: function(){
+	         this.onLoad()
+	         this.bindEvent()
+	     },
+	     onLoad : function(){
+	         // 初始化左侧菜单
+	         navSide.init({
+	             name: 'user-pass-update'
+	         });
+	     },
+	     bindEvent : function(){
+	         var _this = this
+	         // 点击提交按钮后的动作
+	         $(document).on('click', '.btn-submit', function(){
+	             var userInfo = {
+	                 password        : $.trim($('#password').val()),
+	                 passwordNew     : $.trim($('#password-new').val()),
+	                 passwordConfirm : $.trim($('#password-confirm').val())
+	             },
+	             validateResult = _this.validateForm(userInfo)
+	             if(validateResult.status){
+	                 // 更改用户密码
+	                 _user.updatePassword({
+	                     passwordOld : userInfo.password,
+	                     passwordNew : userInfo.passwordNew
+	                 }, function(res, msg){
+	                     _mm.successTips(msg)
+	                 }, function(errMsg){
+	                     _mm.errorTips(errMsg)
+	                 })
+	             }
+	             else{
+	                 _mm.errorTips(validateResult.msg)
+	             }
+	         })
+	     },
+	     // 验证字段信息
+	     validateForm : function(formData){
+	         var result = {
+	             status  : false,
+	             msg     : ''
+	         }
+	         // 验证原密码是否为空
+	         if(!_mm.validate(formData.password, 'require')){
+	             result.msg = '原密码不能为空';
+	             return result
+	         }
+	         // 验证新密码长度
+	         if(!formData.passwordNew || formData.passwordNew.length < 6){
+	             result.msg = '密码长度不得少于6位'
+	             return result
+	         }
+	         // 验证两次输入的密码是否一致
+	         if(formData.passwordNew !== formData.passwordConfirm){
+	             result.msg = '两次输入的密码不一致'
+	             return result
+	         }
+	         // 通过验证，返回正确提示
+	         result.status   = true
+	         result.msg      = '验证通过'
+	         return result
+	     }
+	 };
+	 $(function(){
+	     page.init()
+	 })
+
+
+/***/ }),
+
+/***/ 131:
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ })
 
