@@ -3,7 +3,7 @@ webpackJsonp([7],{
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(130);
+	module.exports = __webpack_require__(140);
 
 
 /***/ }),
@@ -15,7 +15,7 @@ webpackJsonp([7],{
 	 * @Author: 王贺
 	 * @Date:   2018-11-20T21:08:46+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-26T20:23:30+08:00
+	 * @Last modified time: 2018-11-27T12:55:24+08:00
 	 */
 
 	 'use strict'
@@ -281,7 +281,7 @@ webpackJsonp([7],{
 
 /***/ }),
 
-/***/ 106:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -291,9 +291,9 @@ webpackJsonp([7],{
 	 * @Last modified time: 2018-11-22T23:00:37+08:00
 	 */
 	'use strict'
-	__webpack_require__(107)
+	__webpack_require__(126)
 	var _mm = __webpack_require__(98)
-	var templateIndex   = __webpack_require__(109);
+	var templateIndex   = __webpack_require__(128);
 
 	// 侧边导航
 	var navSide = {
@@ -333,48 +333,43 @@ webpackJsonp([7],{
 
 /***/ }),
 
-/***/ 107:
+/***/ 126:
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 109:
+/***/ 128:
 /***/ (function(module, exports) {
 
 	module.exports = "{{#navList}}\r\n{{#isActive}}\r\n<li class=\"nav-item active\">\r\n{{/isActive}}\r\n{{^isActive}}\r\n<li class=\"nav-item\">\r\n{{/isActive}}\r\n    <a class=\"link\" href=\"{{href}}\">{{desc}}</a>\r\n</li>\r\n{{/navList}} \r\n";
 
 /***/ }),
 
-/***/ 130:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * @Author: 王贺
 	 * @Date:   2018-11-26T19:33:13+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-26T19:34:27+08:00
+	 * @Last modified time: 2018-11-27T15:47:58+08:00
 	 */
 	 'use strict'
-	 __webpack_require__(131)
+	 __webpack_require__(141)
 	 __webpack_require__(95)
 	 __webpack_require__(103);
-	 var navSide         = __webpack_require__(106)
+	 var navSide         = __webpack_require__(125)
 	 var _mm             = __webpack_require__(98)
 	 var _user           = __webpack_require__(102)
 
 	 // page 逻辑部分
 	 var page = {
 	     init: function(){
-	         this.onLoad()
-	         this.bindEvent()
-	     },
-	     onLoad : function(){
 	         // 初始化左侧菜单
-	         navSide.init({
-	             name: 'user-pass-update'
-	         });
+	         navSide.init({ name: 'user-pass-update'})
+	         this.bindEvent()
 	     },
 	     bindEvent : function(){
 	         var _this = this
@@ -409,7 +404,7 @@ webpackJsonp([7],{
 	             msg     : ''
 	         }
 	         // 验证原密码是否为空
-	         if(!_mm.validate(formData.password, 'require')){
+	         if(!_mm.validate('require', formData.password)){
 	             result.msg = '原密码不能为空';
 	             return result
 	         }
@@ -436,7 +431,7 @@ webpackJsonp([7],{
 
 /***/ }),
 
-/***/ 131:
+/***/ 141:
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

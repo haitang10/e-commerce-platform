@@ -15,17 +15,17 @@ webpackJsonp([1],{
 	 * @Author: 王贺
 	 * @Date:   2018-10-22T16:20:16+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-22T23:27:16+08:00
+	 * @Last modified time: 2018-11-30T17:49:28+08:00
 	 */
 	'use strict'
 	__webpack_require__(93)
 	__webpack_require__(95)
 	__webpack_require__(103)
-	var navSide = __webpack_require__(106)
+	__webpack_require__(106)
 
-	// var _mm = require('util/mm.js')
+	var templateBanner = __webpack_require__(110)
+	var _mm = __webpack_require__(98)
 
-	navSide.init({name: 'order-list'})
 	// // 1.测试ajax跨域
 	// // _mm.request({
 	// //     url: '/product/list.do?keyword=1',
@@ -44,6 +44,26 @@ webpackJsonp([1],{
 	// console.log('test htmlTemplate', _mm.renderHtml(htmlTemplate, data))
 
 	// 11.20 更新
+	// 11.30 update
+	$(function() {
+	    // 渲染banner的html
+	    var bannerHtml  = _mm.renderHtml(templateBanner)
+	    $('.banner-con').html(bannerHtml)
+	    // 初始化banner
+	    var $slider     = $('.banner').unslider({
+	        dots: true
+	    })
+	    //前一张后一张操作的事件3绑定
+	    $('.banner-con .banner-arrow').click(function(){
+	        var button = $(this).hasClass('prev') ? 'prev' : 'next'
+	        $slider.data('unslider')[button]()
+	    })
+	    // // 前一张和后一张操作的事件绑定
+	    // $('.banner-con .banner-arrow').click(function(){
+	    //     var forward = $(this).hasClass('prev') ? 'prev' : 'next'
+	    //     $slider.data('unslider')[forward]()
+	    // })
+	})
 
 
 /***/ }),
@@ -62,7 +82,7 @@ webpackJsonp([1],{
 	 * @Author: 王贺
 	 * @Date:   2018-11-20T21:08:46+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-26T20:23:30+08:00
+	 * @Last modified time: 2018-11-27T12:55:24+08:00
 	 */
 
 	 'use strict'
@@ -333,49 +353,14 @@ webpackJsonp([1],{
 
 	/**
 	 * @Author: 王贺
-	 * @Date:   2018-11-22T22:20:56+08:00
+	 * @Date:   2018-11-30T17:04:21+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-22T23:00:37+08:00
+	 * @Last modified time: 2018-11-30T17:07:49+08:00
 	 */
-	'use strict'
-	__webpack_require__(107)
-	var _mm = __webpack_require__(98)
-	var templateIndex   = __webpack_require__(109);
+	 'use strict';
 
-	// 侧边导航
-	var navSide = {
-	    option: {
-	        name: '',
-	        navList: [
-	            {name: 'user-center', desc:'个人中心', href:'./user-center.html'},
-	            {name : 'order-list', desc : '我的订单', href: './order-list.html'},
-	            {name : 'user-pass-update', desc : '修改密码', href: './user-pass-update.html'},
-	            {name : 'about', desc : '关于MMall', href: './about.html'}
-	        ]
-	    },
-	    init: function(option) {
-	        // 合并选项
-	        $.extend(this.option, option)
-	        this.renderNav()
-	    },
-	    // 渲染导航菜单
-	    renderNav: function() {
-	        // 计算active数据
-	        var iLength = this.option.navList.length
-	        for(var i = 0; i < iLength; i++){
-	            if(this.option.navList[i].name === this.option.name){
-	                this.option.navList[i].isActive = true
-	            }
-	        }
-
-	        // 渲染list数据
-	        var navHtml = _mm.renderHtml(templateIndex, {navList : this.option.navList})
-
-	        // 把HTML放入容器
-	        $('.nav-side').html(navHtml)
-	    }
-	}
-	module.exports = navSide
+	 __webpack_require__(107);
+	 __webpack_require__(109);
 
 
 /***/ }),
@@ -390,7 +375,140 @@ webpackJsonp([1],{
 /***/ 109:
 /***/ (function(module, exports) {
 
-	module.exports = "{{#navList}}\r\n{{#isActive}}\r\n<li class=\"nav-item active\">\r\n{{/isActive}}\r\n{{^isActive}}\r\n<li class=\"nav-item\">\r\n{{/isActive}}\r\n    <a class=\"link\" href=\"{{href}}\">{{desc}}</a>\r\n</li>\r\n{{/navList}} \r\n";
+	/**
+	 * @Author: 王贺
+	 * @Date:   2018-11-30T17:03:57+08:00
+	 * @Last modified by:   王贺
+	 * @Last modified time: 2018-11-30T18:10:43+08:00
+	 */
+	window.console && console.warn("This version of Unslider is due to be deprecated by December 1. Please visit unslider.com for details on how to upgrade."),
+	    function(t, s) {
+	        if (!t) return s
+	        var i = function() {
+	            this.el = s, this.items = s, this.sizes = [], this.max = [0, 0], this.current = 0, this.interval = s, this.opts = {
+	                speed: 500,
+	                delay: 3e3,
+	                complete: s,
+	                keys: !s,
+	                dots: s,
+	                fluid: s
+	            }
+	            var i = this
+	            this.init = function(s, i) {
+	                return this.el = s, this.ul = s.children("ul"), this.max = [s.outerWidth(), s.outerHeight()], this.items = this.ul.children("li").each(this.calculate), this.opts = t.extend(this.opts, i), this.setup(), this
+	            }, this.calculate = function(s) {
+	                var e = t(this),
+	                    n = e.outerWidth(),
+	                    h = e.outerHeight();
+	                i.sizes[s] = [n, h], n > i.max[0] && (i.max[0] = n), h > i.max[1] && (i.max[1] = h)
+	            }, this.setup = function() {
+	                if (this.el.css({
+	                        overflow: "hidden",
+	                        width: i.max[0],
+	                        height: this.items.first().outerHeight()
+	                    }), this.ul.css({
+	                        width: 100 * this.items.length + "%",
+	                        position: "relative"
+	                    }), this.items.css("width", 100 / this.items.length + "%"), this.opts.delay !== s && (this.start(), this.el.hover(this.stop, this.start)), this.opts.keys && t(document).keydown(this.keys), this.opts.dots && this.dots(), this.opts.fluid) {
+	                    var e = function() {
+	                        i.el.css("width", Math.min(Math.round(i.el.outerWidth() / i.el.parent().outerWidth() * 100), 100) + "%")
+	                    };
+	                    e(), t(window).resize(e)
+	                }
+	                this.opts.arrows && this.el.parent().append('<p class="arrows"><span class="prev">芒鈥犅�</span><span class="next">芒鈥犫€�</span></p>').find(".arrows span").click(function() {
+	                    t.isFunction(i[this.className]) && i[this.className]()
+	                }), t.event.swipe && this.el.on("swipeleft", i.prev).on("swiperight", i.next)
+	            }, this.move = function(s, e) {
+	                this.items.eq(s).length || (s = 0), 0 > s && (s = this.items.length - 1);
+	                var n = this.items.eq(s),
+	                    h = {
+	                        height: n.outerHeight()
+	                    },
+	                    o = e ? 5 : this.opts.speed;
+	                this.ul.is(":animated") || (i.el.find(".dot:eq(" + s + ")").addClass("active").siblings().removeClass("active"), this.el.animate(h, o) && this.ul.animate(t.extend({
+	                    left: "-" + s + "00%"
+	                }, h), o, function() {
+	                    i.current = s, t.isFunction(i.opts.complete) && !e && i.opts.complete(i.el)
+	                }))
+	            }, this.start = function() {
+	                i.interval = setInterval(function() {
+	                    i.move(i.current + 1)
+	                }, i.opts.delay)
+	            }, this.stop = function() {
+	                return i.interval = clearInterval(i.interval), i
+	            }, this.keys = function(s) {
+	                var e = s.which,
+	                    n = {
+	                        37: i.prev,
+	                        39: i.next,
+	                        27: i.stop
+	                    };
+	                t.isFunction(n[e]) && n[e]()
+	            }, this.next = function() {
+	                return i.stop().move(i.current + 1)
+	            }, this.prev = function() {
+	                return i.stop().move(i.current - 1)
+	            }, this.dots = function() {
+	                var s = '<ol class="dots">';
+	                t.each(this.items, function(t) {
+	                    s += '<li class="dot' + (1 > t ? " active" : "") + '">' + (t + 1) + "</li>"
+	                }), s += "</ol>", this.el.addClass("has-dots").append(s).find(".dot").click(function() {
+	                    i.move(t(this).index())
+	                })
+	            }
+	        }
+	        t.fn.unslider = function(s) {
+	            var e = this.length;
+	            return this.each(function(n) {
+	                var h = t(this)
+	                var o = (new i).init(h, s)
+	                h.data("unslider" + (e > 1 ? "-" + (n + 1) : ""), o)
+	            })
+	        }
+	    }(window.jQuery, !1);
+
+
+/***/ }),
+
+/***/ 110:
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = "<div class=\"banner\">\n    <ul>\n        <li>\n            <a href=\"./list.html?categoryId=100021\" target=\"_blank\">\n                <img class=\"banner-img\" src=\"" + __webpack_require__(111) + "\" />\n            </a>\n        </li>\n        <li>\n            <a href=\"./list.html?categoryId=100030\" target=\"_blank\">\n                <img class=\"banner-img\" src=\"" + __webpack_require__(112) + "\" />\n            </a>\n        </li>\n        <li>\n            <a href=\"./list.html?categoryId=100016\" target=\"_blank\">\n                <img class=\"banner-img\" src=\"" + __webpack_require__(113) + "\" />\n            </a>\n        </li>\n        <li>\n            <a href=\"./list.html?categoryId=100001\" target=\"_blank\">\n                <img class=\"banner-img\" src=\"" + __webpack_require__(114) + "\" />\n            </a>\n        </li>\n        <li>\n            <a href=\"./list.html?categoryId=100021\" target=\"_blank\">\n                <img class=\"banner-img\" src=\"" + __webpack_require__(115) + "\" />\n            </a>\n        </li>\n    </ul>\n    <div class=\"banner-arrow prev\">\n        <i class=\"fa fa-angle-left\"></i>\n    </div>\n    <div class=\"banner-arrow next\">\n        <i class=\"fa fa-angle-right\"></i>\n    </div>\n</div>\n";
+
+/***/ }),
+
+/***/ 111:
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "resource/banner1.jpg";
+
+/***/ }),
+
+/***/ 112:
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "resource/banner2.jpg";
+
+/***/ }),
+
+/***/ 113:
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "resource/banner3.jpg";
+
+/***/ }),
+
+/***/ 114:
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "resource/banner4.jpg";
+
+/***/ }),
+
+/***/ 115:
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "resource/banner5.jpg";
 
 /***/ })
 

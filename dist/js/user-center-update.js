@@ -3,7 +3,7 @@ webpackJsonp([4],{
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(120);
+	module.exports = __webpack_require__(130);
 
 
 /***/ }),
@@ -15,7 +15,7 @@ webpackJsonp([4],{
 	 * @Author: 王贺
 	 * @Date:   2018-11-20T21:08:46+08:00
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-26T20:23:30+08:00
+	 * @Last modified time: 2018-11-27T12:55:24+08:00
 	 */
 
 	 'use strict'
@@ -281,7 +281,7 @@ webpackJsonp([4],{
 
 /***/ }),
 
-/***/ 106:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -291,9 +291,9 @@ webpackJsonp([4],{
 	 * @Last modified time: 2018-11-22T23:00:37+08:00
 	 */
 	'use strict'
-	__webpack_require__(107)
+	__webpack_require__(126)
 	var _mm = __webpack_require__(98)
-	var templateIndex   = __webpack_require__(109);
+	var templateIndex   = __webpack_require__(128);
 
 	// 侧边导航
 	var navSide = {
@@ -333,37 +333,37 @@ webpackJsonp([4],{
 
 /***/ }),
 
-/***/ 107:
+/***/ 126:
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 109:
+/***/ 128:
 /***/ (function(module, exports) {
 
 	module.exports = "{{#navList}}\r\n{{#isActive}}\r\n<li class=\"nav-item active\">\r\n{{/isActive}}\r\n{{^isActive}}\r\n<li class=\"nav-item\">\r\n{{/isActive}}\r\n    <a class=\"link\" href=\"{{href}}\">{{desc}}</a>\r\n</li>\r\n{{/navList}} \r\n";
 
 /***/ }),
 
-/***/ 120:
+/***/ 130:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	* @Author: Rosen
 	* @Date:   2017-05-23 19:52:16
 	 * @Last modified by:   王贺
-	 * @Last modified time: 2018-11-27T12:27:39+08:00
+	 * @Last modified time: 2018-11-27T15:32:05+08:00
 	*/
 	'use strict'
-	__webpack_require__(121)
+	__webpack_require__(131)
 	__webpack_require__(95)
 	__webpack_require__(103)
-	var navSide         = __webpack_require__(106)
+	var navSide         = __webpack_require__(125)
 	var _mm             = __webpack_require__(98)
 	var _user           = __webpack_require__(102)
-	var templateIndex   = __webpack_require__(123)
+	var templateIndex   = __webpack_require__(133)
 
 	// page 逻辑部分
 	var page = {
@@ -386,7 +386,7 @@ webpackJsonp([4],{
 	    // 2.绑定事件
 	    bindEvent : function(){
 	        var _this = this
-	        // 点击提交按钮后的动作
+	        // 点击提交按钮后的动作，因为提交按钮是渲染出来的，所以把时间绑定在document上
 	        $(document).on('click', '.btn-submit', function(){
 	            var userInfo = {
 	                phone       : $.trim($('#phone').val()),
@@ -405,9 +405,9 @@ webpackJsonp([4],{
 	                })
 	            }
 	            else{
-	                _mm.errorTips(validateResult.msg);
+	                _mm.errorTips(validateResult.msg)
 	            }
-	        });
+	        })
 	    },
 	    // 3.验证字段信息
 	    validateForm : function(formData){
@@ -448,14 +448,14 @@ webpackJsonp([4],{
 
 /***/ }),
 
-/***/ 121:
+/***/ 131:
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 123:
+/***/ 133:
 /***/ (function(module, exports) {
 
 	module.exports = "<div class=\"user-info\">\n    <div class=\"form-line\">\n        <span class=\"label\">用户名：</span>\n        <span class=\"text\">{{username}}</span>\n    </div>\n    <div class=\"form-line\">\n        <span class=\"label\">电 话：</span>\n        <input class=\"input\" id=\"phone\" autocomplete=\"off\" value=\"{{phone}}\" />\n    </div>\n    <div class=\"form-line\">\n        <span class=\"label\">邮 箱：</span>\n        <input class=\"input\" id=\"email\" autocomplete=\"off\" value=\"{{email}}\" />\n    </div>\n    <div class=\"form-line\">\n        <span class=\"label\">问 题：</span>\n        <input class=\"input\" id=\"question\" autocomplete=\"off\" value=\"{{question}}\" />\n    </div>\n    <div class=\"form-line\">\n        <span class=\"label\">答 案：</span>\n        <input class=\"input\" id=\"answer\" autocomplete=\"off\" value=\"{{answer}}\" />\n    </div>\n    <span class=\"btn btn-submit\">提交</span>\n</div>";
