@@ -1,15 +1,15 @@
 /*
 * @Author: mmall
 * @Date:   2017-05-27 18:04:22
-* @Last Modified by:   Rosen
-* @Last Modified time: 2017-05-29 16:44:22
+ * @Last modified by:   王贺
+ * @Last modified time: 2018-12-02T19:43:06+08:00
 */
 /* 排序按钮 */
 .sort-con{
-    overflow: auto;
+    /* overflow: hidden; */
 }
 .sort-con .sort-item{
-    float: left;
+    /* float: left; */
     display: inline-block;
     position: relative;
     padding: 0 8px;

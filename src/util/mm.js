@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-11T14:57:07+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-26T19:13:45+08:00
+ * @Last modified time: 2018-12-02T19:09:16+08:00
  */
 'use strict'
 var Hogan = require('hogan.js')
@@ -62,13 +62,13 @@ var _mm = {
         // .*? 非贪婪模式
 
         var result = window.location.search.substr(1).match(reg)
-        console.log('reg', typeof(reg), reg)
-        console.log('result', result)
+        // console.log('reg', typeof(reg), reg)
+        // console.log('result', result)
         return result ? decodeURIComponent(result[2]) : null
 
     },
 
-    // 5.渲染HTML模板,使用hogan,先编译，再渲染
+    // 5.渲染HTML模板,使用hogan,先编译，再渲染,data 是一个对象
     renderHtml: function(htmlTemplate, data) {
         return Hogan.compile(htmlTemplate).render(data)
     },
