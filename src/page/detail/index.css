@@ -2,11 +2,13 @@
  * @Author: 王贺
  * @Date:   2018-12-02T21:25:23+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-12-02T21:39:45+08:00
+ * @Last modified time: 2018-12-04T21:36:06+08:00
  */
+
+
  /* 图片区 */
  .intro-wrap{
-     overflow: hidden;
+     overflow: auto;
  }
  .intro-wrap .p-img-con{
      float: left;
@@ -23,7 +25,7 @@
  }
  /* 缩略图 */
  .intro-wrap .p-img-con .p-img-list{
-     overflow: hidden;
+
      height: 76px;
      margin-top: 5px;
      margin-right: -10px;
@@ -112,6 +114,7 @@
  }
  /* 商品详细信息 */
  .detail-wrap{
+
      margin-top: 15px;
  }
  .detail-wrap .tab-list{

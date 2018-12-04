@@ -2,38 +2,39 @@
  * @Author: 王贺
  * @Date:   2018-12-02T21:25:31+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-12-02T22:09:26+08:00
+ * @Last modified time: 2018-12-04T23:14:00+08:00
  */
- 'use strict';
-
- require('./index.css');
- require('page/common/nav/index.js');
- require('page/common/header/index.js');
- var _mm             = require('util/mm.js');
- var _product        = require('service/product-service.js');
- var _cart           = require('service/cart-service.js');
- var templateIndex   = require('./index.string');
+ 'use strict'
+ require('./index.css')
+ require('page/common/nav/index.js')
+ require('page/common/header/index.js')
+ var _mm             = require('util/mm.js')
+ var _product        = require('service/product-service.js')
+ var _cart           = require('service/cart-service.js')
+ var templateIndex   = require('./index.string')
 
  var page = {
      data : {
          productId : _mm.getUrlParam('productId') || '',
      },
      init : function(){
-         this.onLoad();
-         this.bindEvent();
+             console.log('this.data',this.data)
+         this.onLoad()
+         this.bindEvent()
+
      },
      onLoad : function(){
          // 如果没有传productId, 自动跳回首页
          if(!this.data.productId){
-             _mm.goHome();
+             _mm.goHome()
          }
-         this.loadDetail();
+         this.loadDetail()
      },
      bindEvent : function(){
-         var _this = this;
+         var _this = this
          // 1.图片预览
          $(document).on('mouseenter', '.p-img-item', function(){
-             var imageUrl   = $(this).find('.p-img').attr('src');
+             var imageUrl   = $(this).find('.p-img').attr('src')
              $('.main-img').attr('src', imageUrl);
          });
          // 2.count的操作
@@ -62,30 +63,33 @@
              });
          });
      },
+
      // 加载商品详情的数据
      loadDetail : function(){
          var _this       = this,
              html        = '',
-             $pageWrap   = $('.page-wrap');
-         // loading
-         $pageWrap.html('<div class="loading"></div>');
-         // 请求detail信息
+             $pageWrap   = $('.page-wrap')
+         // 1.加载 loading
+         $pageWrap.html('<div class="loading"></div>')
+         // 2.请求detail信息
          _product.getProductDetail(this.data.productId, function(res){
-             _this.filter(res);
+             console.log('响应',res)
+             // 过滤一下响应，因为subImages 是以逗号分隔的4张图片地址
+             _this.filter(res)
              // 缓存住detail的数据
-             _this.data.detailInfo = res;
+             _this.data.detailInfo = res
              // render
-             html = _mm.renderHtml(templateIndex, res);
-             $pageWrap.html(html);
+             html = _mm.renderHtml(templateIndex, res)
+             $pageWrap.html(html)
          }, function(errMsg){
-             $pageWrap.html('<p class="err-tip">此商品太淘气，找不到了</p>');
-         });
+             $pageWrap.html('<p class="err-tip">此商品太淘气，找不到了</p>')
+         })
      },
      // 数据匹配
      filter : function(data){
-         data.subImages = data.subImages.split(',');
+         data.subImages = data.subImages.split(',')
      }
  };
  $(function(){
-     page.init();
+     page.init()
  })
