@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-07T19:26:49+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-11-25T17:39:24+08:00
+ * @Last modified time: 2018-12-06T21:46:40+08:00
  */
 'use strict'
 require('./index.css')
@@ -45,6 +45,7 @@ var page = {
         if(validateResult.status){
             // 不为空，调用login 接口发送数据到服务器验证用户名是否存在，和密码是否匹配等
             _user.login(formData, function(res){
+                console.log('user-res', res)
                 // 跳回原来地址或者首页
                 window.location.href = _mm.getUrlParam('redirect') || './index.html'
             }, function(errMsg){

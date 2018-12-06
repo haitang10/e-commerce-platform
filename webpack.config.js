@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-07T16:45:52+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-12-02T22:20:49+08:00
+ * @Last modified time: 2018-12-06T20:22:16+08:00
  */
 var webpack = require('webpack')
 var Ex = require('extract-text-webpack-plugin')
@@ -36,7 +36,7 @@ var config = {
         'user-pass-update'  : ['./src/page/user-pass-update/index.js'],
         'list'              : ['./src/page/list/index.js'],
         'detail'            : ['./src/page/detail/index.js'],
-        // 'cart'              : ['./src/page/cart/index.js'],
+        'cart'              : ['./src/page/cart/index.js'],
 
     },
     output: {
@@ -83,7 +83,7 @@ var config = {
         new Ht(getHtmlConfig('user-pass-update', '修改密码')),
         new Ht(getHtmlConfig('list', '商品列表页')),
         new Ht(getHtmlConfig('detail', '商品详情页')),
-        // new Ht(getHtmlConfig('cart', '购物车')),
+        new Ht(getHtmlConfig('cart', '购物车')),
     ],
 
 
