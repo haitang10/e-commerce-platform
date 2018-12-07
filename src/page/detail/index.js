@@ -50,7 +50,7 @@
              else if(type === 'minus'){
                  $pCount.val(currCount > minCount ? currCount - 1 : minCount);
              }
-         });
+         })
          // 3 加入购物车
          $(document).on('click', '.cart-add', function(){
              _cart.addToCart({

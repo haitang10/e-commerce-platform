@@ -2,7 +2,7 @@
 * @Author: Rosen
 * @Date:   2017-05-30 16:51:25
  * @Last modified by:   王贺
- * @Last modified time: 2018-12-06T22:16:17+08:00
+ * @Last modified time: 2018-12-07T17:12:24+08:00
 */
 
 'use strict'
@@ -14,6 +14,7 @@ var _cart           = require('service/cart-service.js')
 var templateIndex   = require('./index.string')
 
 var page = {
+    renderCount: 0,
     data : {
 
     },
@@ -28,7 +29,7 @@ var page = {
         var _this = this
         // 获取购物车列表
         _cart.getCartList(function(res){
-            console.log('这里的this怎么又出问题了？',this, _this)
+            console.log('这里的this怎么又出问题了？发送http请求和绑定事件都会改变this的指向',this, _this)
             _this.renderCart(res)
         }, function(errMsg){
             _this.showCartError()
@@ -36,23 +37,25 @@ var page = {
     },
     // 2.渲染购物车
     renderCart : function(data){
-        this.filter(data);
+        this.renderCount += 1
+        console.log('渲染页面次数', this.renderCount)
+        this.filter(data)
         // 缓存购物车信息
-        this.data.cartInfo = data;
+        this.data.cartInfo = data
         // 生成HTML
-        var cartHtml = _mm.renderHtml(templateIndex, data);
-        $('.page-wrap').html(cartHtml);
+        var cartHtml = _mm.renderHtml(templateIndex, data)
+        $('.page-wrap').html(cartHtml)
         // 通知导航的购物车更新数量
-        nav.loadCartCount();
+        nav.loadCartCount()
     },
     // 3.删除指定商品，支持批量，productId用逗号分割
     deleteCartProduct : function(productIds){
         var _this = this;
         _cart.deleteProduct(productIds, function(res){
-            _this.renderCart(res);
+            _this.renderCart(res)
         }, function(errMsg){
             _this.showCartError();
-        });
+        })
     },
     // 4.数据匹配
     filter : function(data){
@@ -64,48 +67,49 @@ var page = {
     },
     // 6.绑定事件
     bindEvent : function(){
-        var _this = this;
+        var _this = this
         // 1.商品的选择 / 取消选择
-        $(document).on('click', '.cart-select', function(){
+        $('.w').on('click', '.cart-select', function(){
             var $this = $(this),
-                productId = $this.parents('.cart-table').data('product-id');
+                productId = $this.parents('.cart-table').data('product-id')
+            // console.log('this and $this', this, $this, typeof this)
             // 选中
             if($this.is(':checked')){
                 _cart.selectProduct(productId, function(res){
-                    _this.renderCart(res);
+                    _this.renderCart(res)
                 }, function(errMsg){
-                    _this.showCartError();
-                });
+                    _this.showCartError()
+                })
             }
             // 取消选中
             else{
                 _cart.unselectProduct(productId, function(res){
-                    _this.renderCart(res);
+                    _this.renderCart(res)
                 }, function(errMsg){
-                    _this.showCartError();
-                });
+                    _this.showCartError()
+                })
             }
-        });
+        })
         // 2.商品的全选 / 取消全选
         $(document).on('click', '.cart-select-all', function(){
-            var $this = $(this);
+            var $this = $(this)
             // 全选
             if($this.is(':checked')){
                 _cart.selectAllProduct(function(res){
-                    _this.renderCart(res);
+                    _this.renderCart(res)
                 }, function(errMsg){
-                    _this.showCartError();
-                });
+                    _this.showCartError()
+                })
             }
             // 取消全选
             else{
                 _cart.unselectAllProduct(function(res){
-                    _this.renderCart(res);
+                    _this.renderCart(res)
                 }, function(errMsg){
-                    _this.showCartError();
-                });
+                    _this.showCartError()
+                })
             }
-        });
+        })
         // 3.商品数量的变化
         $(document).on('click', '.count-btn', function(){
             var $this       = $(this),
@@ -115,52 +119,56 @@ var page = {
                 productId   = $this.parents('.cart-table').data('product-id'),
                 minCount    = 1,
                 maxCount    = parseInt($pCount.data('max')),
-                newCount    = 0;
+                newCount    = 0
             if(type === 'plus'){
-                if(currCount >= maxCount){
-                    _mm.errorTips('该商品数量已达到上限');
-                    return;
-                }
-                newCount = currCount + 1;
+                $pCount.val(currCount < maxCount ? currCount + 1 : maxCount)
+                currCount   = parseInt($pCount.val())
+                console.log('商品数量', currCount)
+                // if(currCount >= maxCount){
+                //     _mm.errorTips('该商品数量已达到上限')
+                //     return;
+                // }
+                // newCount = currCount + 1
             }else if(type === 'minus'){
-                if(currCount <= minCount){
-                    return;
-                }
-                newCount = currCount - 1;
+                $pCount.val(currCount > minCount ? currCount - 1 : minCount)
+                currCount   = parseInt($pCount.val())
+                console.log('商品数量', currCount)
+                // if(currCount <= minCount){
+                //     return
+                // }
+                // newCount = currCount - 1
             }
             // 更新购物车商品数量
             _cart.updateProduct({
                 productId : productId,
-                count : newCount
+                count : currCount
             }, function(res){
-                _this.renderCart(res);
+                _this.renderCart(res)
             }, function(errMsg){
-                _this.showCartError();
-            });
-        });
+                _this.showCartError()
+            })
+        })
         // 4.删除单个商品
         $(document).on('click', '.cart-delete', function(){
             if(window.confirm('确认要删除该商品？')){
-                var productId = $(this).parents('.cart-table')
-                    .data('product-id');
-                _this.deleteCartProduct(productId);
+                var productId = $(this).parents('.cart-table').data('product-id')
+                _this.deleteCartProduct(productId)
             }
-        });
+        })
         // 5.删除选中商品
         $(document).on('click', '.delete-selected', function(){
             if(window.confirm('确认要删除选中的商品？')){
                 var arrProductIds = [],
-                    $selectedItem = $('.cart-select:checked');
+                    $selectedItem = $('.cart-select:checked')
                 // 循环查找选中的productIds
                 for(var i = 0, iLength = $selectedItem.length; i < iLength; i ++){
-                    arrProductIds
-                        .push($($selectedItem[i]).parents('.cart-table').data('product-id'));
+                    arrProductIds.push($($selectedItem[i]).parents('.cart-table').data('product-id'));
                 }
                 if(arrProductIds.length){
-                    _this.deleteCartProduct(arrProductIds.join(','));
+                    _this.deleteCartProduct(arrProductIds.join(','))
                 }
                 else{
-                    _mm.errorTips('您还没有选中要删除的商品');
+                    _mm.errorTips('您还没有选中要删除的商品')
                 }
             }
         });
@@ -168,11 +176,11 @@ var page = {
         $(document).on('click', '.btn-submit', function(){
             // 总价大于0，进行提交
             if(_this.data.cartInfo && _this.data.cartInfo.cartTotalPrice > 0){
-                window.location.href = './confirm.html';
+                window.location.href = './confirm.html'
             }else{
-                _mm.errorTips('请选择商品后再提交');
+                _mm.errorTips('请选择商品后再提交')
             }
-        });
+        })
     }
 
 

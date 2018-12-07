@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-12-02T21:32:43+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-12-02T21:39:13+08:00
+ * @Last modified time: 2018-12-07T17:20:33+08:00
  */
  'use strict';
 
@@ -93,4 +93,4 @@
          });
      },
  }
- module.exports = _cart;
+ module.exports = _cart

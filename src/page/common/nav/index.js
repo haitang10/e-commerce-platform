@@ -2,7 +2,7 @@
  * @Author: 王贺
  * @Date:   2018-11-20T21:08:46+08:00
  * @Last modified by:   王贺
- * @Last modified time: 2018-12-06T21:51:33+08:00
+ * @Last modified time: 2018-12-07T17:20:06+08:00
  */
 
  'use strict'
@@ -56,5 +56,4 @@
          })
      }
  }
-
  module.exports = nav.init()
